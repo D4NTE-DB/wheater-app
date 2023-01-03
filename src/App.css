@@ -1,0 +1,87 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.all-info{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 3rem;
+  /* border: 3px solid lightcoral; */
+  text-align: center;
+  margin: 1rem auto;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.value {
+  /* border: 1px solid black; */
+  position: relative;
+  bottom: 70px;
+  padding-left: 2rem;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* border: 3px solid lightcoral; */
+  text-align: center;
+  /* margin: 1rem auto;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.2); */
+}
+
+.info > div {
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.info > h3 {
+  padding-right: 1rem;
+}
+
+.info > div > box-icon{
+  position: relative;
+  bottom: -20px;
+  right: 10px;
+}
