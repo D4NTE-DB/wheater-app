@@ -1,25 +1,38 @@
-import axios from 'axios'
+import axios, { formToJSON } from 'axios'
 import { useState, useEffect } from 'react'
 import './App.css'
 import { BoxIconElement } from 'boxicons'
+import backImage from './assets/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg'
 
 function App() {
   const [data, setData] = useState()
-  // const [location, setLocation] = useState('')
+  const [location, setLocation] = useState('')
 
-  
   useEffect(() => {
-   
-    // if (data === 0) {
-      axios.get("https://api.openweathermap.org/data/2.5/weather?lat=8.81389&lon=-74.7253&appid=fb1498a695ea5f0a691f13584fe86041&units=metric")
+    function success(pos) {
+      const crd = pos.coords;
+    
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=fb1498a695ea5f0a691f13584fe86041&units=metric`)
       .then(res => {
         setData(res.data)
       })
       .catch(err => console.log(err))
-    // }
-  
-  
+    }
+    
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    
+    navigator.geolocation.getCurrentPosition(success, error);
   }, [])
+
+  
+
+
   const [show, setShow] = useState(true)
 
   const change = () => {
@@ -30,6 +43,7 @@ function App() {
   return (
     <div className="App">
       <h1>Weather App</h1>
+      {/* <img src={backImage} alt="" /> */}
       <h2>{data?.name}, {data?.sys?.country}</h2>
       <div className="all-info">
         <div className="value">
@@ -38,7 +52,7 @@ function App() {
             show && <h2>{data?.main?.temp.toFixed()} °C</h2>
           }
            {
-            !show && <h2>{data?.main?.temp.toFixed()} °F</h2>
+            !show && <h2>{(data?.main?.temp.toFixed() * 9/5)+32} °F</h2>
           }
         </div>
         <div className="info">
